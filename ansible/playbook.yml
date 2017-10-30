@@ -2,6 +2,6 @@
   connection: local
   become: True
   roles:
-#     - common
-#     - h2o
+     - common
+     - h2o
      - php
