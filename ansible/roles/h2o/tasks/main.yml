@@ -9,11 +9,6 @@
 - name: service start h2o
   service: name=h2o enabled=yes state=started
 
-- name: mkdir sites-enabled
-  file:
-    path: /etc/h2o/sites-enabled
-    state: directory
-
 - name: mkdir mruby
   file:
     path: /etc/h2o/mruby
