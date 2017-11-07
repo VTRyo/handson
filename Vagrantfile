@@ -11,10 +11,10 @@ Vagrant.configure("2") do |config|
     web_server.vm.network :forwarded_port, id: "http", guest: 80, host: 8080
     web_server.vm.network :private_network, ip: "192.168.33.10"
 
-    web_server.vm.synced_folder ".", "/vagrant"
+    web_server.vm.synced_folder ".", "/vagrant",
       :owner => "vagrant", :group => "vagrant",
       :mount_options => ["dmode=777,fmode=777"]
-      
+
     web_server.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "ansible/playbook.yml"
       ansible.extra_vars = {
