@@ -29,3 +29,5 @@
     - php
     - php-fpm
 
+- name: service start php-fpm
+  service: name=php-fpm state=started enabled=yes
