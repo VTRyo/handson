@@ -23,6 +23,8 @@
 
 * yumレポジトリを登録する
 
+`vim /etc/yum.repos.d/bintray-tatsushid-h2o-rpm.repo`
+
 ```
 #bintray-tatsushid-h2o-rpm - packages by tatsushid from Bintray
 [bintray-tatsushid-h2o-rpm]
@@ -40,6 +42,25 @@ enabled=1
 
 `sudo yum install h2o`
 
+* サービス起動
+
+`/etc/init.d/h2o start`
+
+* phpインストール
+
+`sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm`
+
+`sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm`
+
+`sudo yum -y install libwebp`
+
+`sudo yum -y install httpd libmcrypt libtool-ltdl libtidy libXpm libtiff autoconf automake gd-last enchant-aspell`
+
+`sudo yum -y install php php-fpm`
+
+* サービス起動
+
+`/etc/init.d/php-fpm start`
 
 # 共通手順
 
@@ -59,7 +80,14 @@ password: vagrant
 
 ### php-fpmと連携してみる
 
-* /etc/php-fpm.d/www.confのlistenを変更する
+* /etc/php-fpm.d/www.confの編集
+
+・追記
+listen = /var/run/php-fpm/php-fpm.sock
+
+・変更
+listen.owner = nobody ;コメントアウトはずす
+listen.group = nobody ;コメントアウトはずす
 
 ```
 ; Start a new pool named 'www'.
@@ -91,8 +119,6 @@ listen.group = nobody ;コメントアウトはずす
 * /etc/h2o/h2o.confに追記する
 
 ```
-user: nobody
-
 file.custom-handler:
   extension: .php
   fastcgi.connect:
