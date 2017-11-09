@@ -5,7 +5,7 @@
     - "http://rpms.famillecollet.com/enterprise/remi-release-6.rpm"
 
 - name: install php base
-  yum: name={{ item }} state=present #disablerepo=amzn-main enablerepo=epel
+  yum: name={{ item }} state=present
   with_items:
     - libwebp
 
@@ -24,7 +24,7 @@
     - enchant-aspell
 
 - name: install php
-  yum: name={{ item }} state=present #enablerepo=remi,remi-php70 disablerepo=amzn-main
+  yum: name={{ item }} state=present
   with_items:
     - php
     - php-fpm

@@ -1,9 +1,7 @@
 # 爆速WEBサーバ"H2O"に触れてみよう
 2017.11.9 サポーターズ勉強会資料
 
-# 環境別手順
-
-## Virtualbox + vagrant環境の場合
+## 手順
 
 * 任意の作業フォルダを作成して移動する
 
@@ -21,27 +19,27 @@
 
 `vagrant up`
 
-## Vagrant以外の仮想マシンの場合
+## 他うまくいかない場合は手動(CentOS系)
 
-* 任意の作業フォルダを作成して移動する
+* yumレポジトリを登録する
 
-`mkdir h2o ; cd h2o`
+```
+#bintray-tatsushid-h2o-rpm - packages by tatsushid from Bintray
+[bintray-tatsushid-h2o-rpm]
+name=bintray-tatsushid-h2o-rpm
+#If your system is CentOS
+baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/centos/$releasever/$basearch/
+#If your system is Amazon Linux
+#baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/centos/6/$basearch/
+gpgcheck=0
+repo_gpgcheck=0
+enabled=1
+```
 
-* Ansibleのインストール
+* インストール実行
 
-`sudo yum install ansible`
+`sudo yum install h2o`
 
-* gitのインストール
-
-`sudo yum install git`
-
-* リポジトリを任意をフォルダにクローンする。
-
-`git clone https://github.com/VTRyo/handson.git`
-
-* ディレクトリを移動する
-
-`cd handson`
 
 # 共通手順
 
@@ -50,6 +48,14 @@
 * 任意のブラウザ（Chrome、Firefox、など）
 
 `localhost:8080`
+
+### ログイン
+
+`vagrant ssh`
+もしくは
+`ssh -p 2210 vagrant@127.0.0.1`
+
+password: vagrant
 
 ### php-fpmと連携してみる
 
